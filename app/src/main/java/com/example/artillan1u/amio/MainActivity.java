@@ -36,7 +36,7 @@ public class MainActivity extends FragmentActivity {
             public void onClick(View v){
                 //LayoutInflater layoutInflater = new
                 //View myView = new LayoutInflater().inflate(R.layout.activity_main);
-                new DownloadAsync().execute();
+                new DownloadAsync(valeur1, valeur2).execute();
             }
         });
 

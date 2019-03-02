@@ -19,14 +19,12 @@ import java.net.URL;
 
 public class DownloadAsync extends AsyncTask<URL, Integer, String>  {
     private Exception exception;
-    private Context context;
-    private View rootView;
-    private Activity activity;
+    private TextView valeur1;
+    private TextView valeur2;
 
-    DownloadAsync(){//Context context, View rootView){
-        //this.context = context;
-        //this.rootView = rootView;
-        this.activity = new MainActivity();
+    DownloadAsync(TextView v1, TextView v2){//Context context, View rootView){
+        this.valeur1 = v1;
+        this.valeur2 = v2;
     }
 
     protected void onPreExecute(){
@@ -83,9 +81,6 @@ public class DownloadAsync extends AsyncTask<URL, Integer, String>  {
             Log.d("truc", capteur1.getString("value"));
             Log.d("truc", capteur2.getString("value"));
 
-            final TextView valeur1, valeur2;
-            valeur1 = (TextView) activity.findViewById(R.id.valeur1);
-            valeur2 = (TextView) activity.findViewById(R.id.valeur2);
             valeur1.setText(capteur1.getString("value"));
             valeur2.setText(capteur2.getString("value"));
 
