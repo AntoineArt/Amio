@@ -1,0 +1,33 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:key="beginning_hour"
+        android:title="Choose the beginning hour"
+        android:defaultValue="19"
+        android:inputType="textCapWords"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        />
+
+    <EditTextPreference
+        android:key="ending_hour"
+        android:title="Choose the ending hour"
+        android:defaultValue="23"
+        android:inputType="textCapWords"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:defaultValue="@string/pref_default_display_email"
+        android:inputType="textCapWords"
+        android:key="email_address"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/pref_title_display_email" />
+
+</PreferenceScreen>
