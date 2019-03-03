@@ -5,3 +5,7 @@ Si un capteur détecte une luminosité supérieure à 50 lumens la nuit, il prop
 
 Il est possible, dans le menu de paramètres, de configurer la plage horaire que l'application considèrera comme la nuit, ainsi que
 l'adresse mail par défaut à laquelle une notification sera envoyée.
+
+
+Nous n'avons pas réussi à lier le service s'exécutant périodiquement à l'AsyncTask permettant de récupérer les valeurs des capteurs
+via l'API. Il faut donc le faire manuellement en appuyant sur le bouton "Rafraîchir".
