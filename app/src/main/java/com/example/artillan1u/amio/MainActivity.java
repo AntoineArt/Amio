@@ -41,12 +41,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v){
                 //LayoutInflater layoutInflater = new
                 //View myView = new LayoutInflater().inflate(R.layout.activity_main);
-                new DownloadAsync(valeur1, valeur2, valeur3).execute();
+                new DownloadAsync(valeur1, valeur2, valeur3, getApplicationContext()).execute();
 
                 //verification que valeur3 n'est pas une alerte
-                if (valeur3.getText().equals("abc")){
+                if (valeur3.getText().equals("ALERTE")){
                     //Appeler la methode sendMail de la classe MainActivity
-                    final String RECIPIENT = "jeremy.beauchesne@telecomnancy.net"; //mettre ici le mail des preferences
+                    final String RECIPIENT = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("email_address", "jeremy.beauchesne@telecomnancy.net");; //mettre ici le mail des preferences
                     final String SUBJECT = "Notification de lumiere allumee";
                     final String BODY = "Une lumiere a ete detectee comme allumee dans les locaux de TNCY";
 
