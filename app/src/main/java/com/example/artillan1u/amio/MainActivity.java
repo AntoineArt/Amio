@@ -20,6 +20,8 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import static android.os.SystemClock.sleep;
+
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                 new DownloadAsync(valeur1, valeur2, valeur3).execute();
 
                 //verification que valeur3 n'est pas une alerte
-                if (valeur3.getText().equals("")){
+                if (valeur3.getText().equals("abc")){
                     //Appeler la methode sendMail de la classe MainActivity
                     final String RECIPIENT = "jeremy.beauchesne@telecomnancy.net"; //mettre ici le mail des preferences
                     final String SUBJECT = "Notification de lumiere allumee";
@@ -54,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
                     emailIntent.putExtra(Intent.EXTRA_TEXT, BODY);
                     emailIntent.setType("text/plain");
                     startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-
                 }
             }
         });

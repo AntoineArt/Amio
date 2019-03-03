@@ -16,15 +16,18 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Date;
 
 public class DownloadAsync extends AsyncTask<URL, Integer, String>  {
     private Exception exception;
     private TextView valeur1;
     private TextView valeur2;
+    private TextView valeur3;
 
-    DownloadAsync(TextView v1, TextView v2){//Context context, View rootView){
+    DownloadAsync(TextView v1, TextView v2, TextView v3){//Context context, View rootView){
         this.valeur1 = v1;
         this.valeur2 = v2;
+        this.valeur3 = v3;
     }
 
     protected void onPreExecute(){
@@ -83,6 +86,31 @@ public class DownloadAsync extends AsyncTask<URL, Integer, String>  {
 
             valeur1.setText(capteur1.getString("value"));
             valeur2.setText(capteur2.getString("value"));
+
+            String ts1, ts2;
+            ts1 = capteur1.getString("timestamp");
+            ts2 = capteur1.getString("timestamp");
+
+            Date date1 = new Date(Long.parseLong(ts1));
+            Date date2 = new Date(Long.parseLong(ts2));
+
+            ts1 = date1.toString();
+            ts2 = date2.toString();
+
+            ts1 = ts1.split(" ")[3];
+            int heure1 = Integer.parseInt(ts1.split(":")[0]);
+
+            ts2 = ts2.split(" ")[3];
+            int heure2 = Integer.parseInt(ts2.split(":")[0]);
+
+            //Si heure1 ou heure2 est dans la plage horaire de nuit
+            if (true){
+                valeur3.setText("abc");
+                //mettre valeur3 à "ALERTE"
+            } else {
+                //sinon mettre valeur3 à String vide
+            }
+
 
 
         }
