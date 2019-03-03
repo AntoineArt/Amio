@@ -43,43 +43,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-        ToggleButton b1 = (ToggleButton) findViewById(R.id.toggleButton1);
-        final TextView tv2 = (TextView) findViewById(R.id.textView2);
-
-        b1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (b){
-                    startService(new Intent(getApplicationContext(), MainService.class));
-                    tv2.setText("En cours");
-                }
-                else{
-                    stopService(new Intent(getApplicationContext(), MainService.class));
-                    tv2.setText("Arrêté");
-                }
-            }
-        });
-
         final SharedPreferences prefs = this.getSharedPreferences("com.example.artillan1u", Context.MODE_PRIVATE);
         Boolean b = new Boolean(Boolean.TRUE);
         final String bKey = "bKey";
         prefs.edit().putBoolean(bKey, b).apply();
-
-        CheckBox cb = (CheckBox) findViewById(R.id.checkBox);
-        cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b) {
-                    Log.d("Checked", "Checked");
-                    prefs.edit().putBoolean(bKey, Boolean.TRUE);
-                }
-                else {
-                    Log.d("Unchecked", "Unchecked");
-                    prefs.edit().putBoolean(bKey, Boolean.FALSE);
-                }
-            }
-        });
 
 
 
