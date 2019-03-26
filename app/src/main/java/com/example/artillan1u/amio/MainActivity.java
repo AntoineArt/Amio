@@ -20,15 +20,18 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import static android.os.SystemClock.sleep;
+
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final TextView valeur1, valeur2;
+        final TextView valeur1, valeur2, valeur3;
         valeur1 = (TextView) findViewById(R.id.valeur1);
         valeur2 = (TextView) findViewById(R.id.valeur2);
+        valeur3 = (TextView) findViewById(R.id.valeur3);
 
         valeur1.setText("" + 0.0);
         valeur2.setText("" + 0.0);
@@ -38,7 +41,22 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v){
                 //LayoutInflater layoutInflater = new
                 //View myView = new LayoutInflater().inflate(R.layout.activity_main);
-                new DownloadAsync(valeur1, valeur2).execute();
+                new DownloadAsync(valeur1, valeur2, valeur3, getApplicationContext()).execute();
+
+                //verification que valeur3 n'est pas une alerte
+                if (valeur3.getText().equals("ALERTE")){
+                    //Appeler la methode sendMail de la classe MainActivity
+                    final String RECIPIENT = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("email_address", "jeremy.beauchesne@telecomnancy.net");; //mettre ici le mail des preferences
+                    final String SUBJECT = "Notification de lumiere allumee";
+                    final String BODY = "Une lumiere a ete detectee comme allumee dans les locaux de TNCY";
+
+                    Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+                    emailIntent.putExtra(Intent.EXTRA_EMAIL, RECIPIENT);
+                    emailIntent.putExtra(Intent.EXTRA_SUBJECT, SUBJECT);
+                    emailIntent.putExtra(Intent.EXTRA_TEXT, BODY);
+                    emailIntent.setType("text/plain");
+                    startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+                }
             }
         });
 
@@ -47,9 +65,6 @@ public class MainActivity extends AppCompatActivity {
         Boolean b = new Boolean(Boolean.TRUE);
         final String bKey = "bKey";
         prefs.edit().putBoolean(bKey, b).apply();
-
-
-
 
         Log.d("MainActivity", "Creation de l'activité" + PreferenceManager.getDefaultSharedPreferences(this).getAll());
     }
@@ -71,4 +86,19 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /*
+    protected void sendMail(){
+
+        final String RECIPIENT = "jeremy.beauchesne@telecomnancy.net"; //mettre ici le mail des preferences
+        final String SUBJECT = "Notification de lumiere allumee";
+        final String BODY = "Une lumiere a ete detectee comme allumee dans les locaux de TNCY";
+
+        Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, RECIPIENT);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, SUBJECT);
+        emailIntent.putExtra(Intent.EXTRA_TEXT, BODY);
+        emailIntent.setType("text/plain");
+        startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+    }
+    */
 }

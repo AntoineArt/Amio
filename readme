@@ -1,0 +1,11 @@
+Projet AMIO d'Antoine ARTILLAN et Jérémy BEAUCHESNE
+
+L'application consulte l'API iotlab de TELECOM Nancy et affiche la luminosité des capteurs à chaque appui sur le bouton "Rafraîchir".
+Si un capteur détecte une luminosité supérieure à 50 lumens la nuit, il propose à l'utilisateur d'envoyer un mail.
+
+Il est possible, dans le menu de paramètres, de configurer la plage horaire que l'application considèrera comme la nuit, ainsi que
+l'adresse mail par défaut à laquelle une notification sera envoyée.
+
+
+Nous n'avons pas réussi à lier le service s'exécutant périodiquement à l'AsyncTask permettant de récupérer les valeurs des capteurs
+via l'API. Il faut donc le faire manuellement en appuyant sur le bouton "Rafraîchir".
